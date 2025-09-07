@@ -158,6 +158,34 @@ kubectl get ingress -n demo
     - <IP_MINIKUBE> demo.local
   - Abre http://demo.local
 
+### Scripts de automatización (Minikube)
+
+Ubicados en `scripts/`:
+- PowerShell (Windows): `scripts/minikube-deploy.ps1`
+- Bash (Linux/macOS): `scripts/minikube-deploy.sh`
+
+Uso rápido en Windows PowerShell:
+
+```powershell
+# Usando imagen del registry (GHCR). Si es privada, define estas variables:
+$env:GHCR_USER="tu-usuario"; $env:GHCR_PAT="<tu-PAT>"
+./scripts/minikube-deploy.ps1
+
+# Para usar imagen local sin registry:
+./scripts/minikube-deploy.ps1 -UseLocalImage
+```
+
+Uso rápido en Linux/macOS:
+
+```bash
+# Usando registry (GHCR). Si es privada:
+export GHCR_USER=tu-usuario GHCR_PAT=<tu-PAT>
+bash scripts/minikube-deploy.sh
+
+# Para usar imagen local sin registry:
+USE_LOCAL_IMAGE=1 bash scripts/minikube-deploy.sh
+```
+
 - Si usas cloud (AKS/EKS/GKE): apunta tu DNS público al LB del controlador Ingress.
 
 Si usas GHCR privado, crea el secreto en el namespace `demo` (ya referenciado en el Deployment como `ghcr-secret`):

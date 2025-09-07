@@ -18,7 +18,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Build with Maven
+      - name: Build with Maven (subdir)
+        working-directory: demo_project_with_two_endpoints
         run: mvn -B -DskipTests package
 
   docker:
@@ -42,8 +43,8 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./demo_project_with_two_endpoints
+          file: ./demo_project_with_two_endpoints/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest

@@ -123,3 +123,31 @@ kubectl get secret ghcr-secret -n default
 ```
 
 Si usas otro namespace, crea el secret en ese namespace o ajusta el `Deployment`.
+
+### Kubernetes (namespace `demo`)
+
+Para desplegar usando el namespace dedicado `demo` incluido en `k8s/`:
+
+```bash
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/configmap.yaml
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl get pods,svc -n demo
+
+# Port-forward para probar
+kubectl port-forward -n demo svc/demo-app 8080:80
+# http://localhost:8080/hello
+```
+
+Si usas GHCR privado, crea el secreto en el namespace `demo` (ya referenciado en el Deployment como `ghcr-secret`):
+
+```bash
+kubectl create secret docker-registry ghcr-secret \
+  --docker-server=ghcr.io \
+  --docker-username=<tu-usuario-github> \
+  --docker-password=<tu-PAT> \
+  --namespace demo
+
+kubectl get secret ghcr-secret -n demo
+```

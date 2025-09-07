@@ -105,3 +105,21 @@ Acceso dentro del cluster:
 kubectl port-forward svc/demo-app 8080:80
 # http://localhost:8080/hello
 ```
+
+### Acceso a registry privado (GHCR)
+
+Si la imagen en GHCR es privada, crea un `imagePullSecret` y úsalo (ya referenciado como `ghcr-secret` en `k8s/deployment.yaml`):
+
+```bash
+# Crea un PAT en GitHub con scope: read:packages
+kubectl create secret docker-registry ghcr-secret \
+  --docker-server=ghcr.io \
+  --docker-username=<tu-usuario-github> \
+  --docker-password=<tu-PAT> \
+  --namespace default
+
+# Verifica
+kubectl get secret ghcr-secret -n default
+```
+
+Si usas otro namespace, crea el secret en ese namespace o ajusta el `Deployment`.

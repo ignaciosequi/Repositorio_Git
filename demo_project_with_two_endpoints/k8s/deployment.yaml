@@ -14,6 +14,8 @@ spec:
       labels:
         app: demo-app
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: demo
           image: ghcr.io/ignaciosequi/Repositorio_Git:sha-334c8d2564958f7caf1fa26481c2a6f3d4e13de3

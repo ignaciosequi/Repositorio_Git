@@ -140,6 +140,26 @@ kubectl port-forward -n demo svc/demo-app 8080:80
 # http://localhost:8080/hello
 ```
 
+#### Ingress (exponer por hostname)
+
+Requisitos: tener instalado un Ingress Controller (por ejemplo, NGINX Ingress Controller).
+
+```bash
+# Aplica el Ingress (edita el host en k8s/ingress.yaml)
+kubectl apply -f k8s/ingress.yaml
+
+# Comprueba
+kubectl get ingress -n demo
+```
+
+- Si usas Minikube:
+  - minikube addons enable ingress
+  - Obtén la IP con `minikube ip` y añade en tu `/etc/hosts` (Windows: C:\Windows\System32\drivers\etc\hosts):
+    - <IP_MINIKUBE> demo.example.com
+  - Abre http://demo.example.com
+
+- Si usas cloud (AKS/EKS/GKE): apunta tu DNS público al LB del controlador Ingress.
+
 Si usas GHCR privado, crea el secreto en el namespace `demo` (ya referenciado en el Deployment como `ghcr-secret`):
 
 ```bash

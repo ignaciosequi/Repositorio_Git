@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: demo
-          image: ghcr.io/ignaciosequi/Repositorio_Git:latest # Para prod, usa un tag sha-<commit>
+          image: ghcr.io/ignaciosequi/Repositorio_Git:sha-334c8d2564958f7caf1fa26481c2a6f3d4e13de3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

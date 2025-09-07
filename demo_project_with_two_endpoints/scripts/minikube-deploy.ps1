@@ -1,7 +1,7 @@
 Param(
   [switch]$UseLocalImage,
   [string]$Namespace = "demo",
-  [string]$Host = "demo.local",
+  [string]$IngressHost = "demo.local",
   [string]$GhcrUser = $env:GHCR_USER,
   [string]$GhcrPat = $env:GHCR_PAT
 )
@@ -60,6 +60,5 @@ kubectl -n $Namespace rollout status deploy/demo-app
 $ip = (minikube ip)
 Write-Host ""
 Write-Host "Añade al archivo hosts la siguiente línea (como administrador):"
-Write-Host ("  {0} {1}" -f $ip, $Host)
-Write-Host "Luego abre: http://$Host/hello"
-
+Write-Host ("  {0} {1}" -f $ip, $IngressHost)
+Write-Host "Luego abre: http://$IngressHost/hello"

@@ -46,7 +46,4 @@ jobs:
           context: ./demo_project_with_two_endpoints
           file: ./demo_project_with_two_endpoints/Dockerfile
           push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:snapshot
-            ghcr.io/${{ github.repository }}:sha-${{ github.sha }}
+          tags: ghcr.io/${{ toLower(github.repository) }}:sha-${{ github.sha }}

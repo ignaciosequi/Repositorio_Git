@@ -1,0 +1,6 @@
+Resultados de la ejecución:
+Valor A = 10
+Valor B = 20
+Suma = 30
+Pedro;25
+María;28

@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: demo.example.com # Cambia por tu dominio (o /etc/hosts)
+    - host: demo.local # Para Minikube añade en hosts con la IP de minikube
       http:
         paths:
           - path: /
@@ -17,4 +17,3 @@ spec:
                 name: demo-app
                 port:
                   number: 80
-

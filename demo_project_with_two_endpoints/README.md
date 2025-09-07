@@ -145,7 +145,7 @@ kubectl port-forward -n demo svc/demo-app 8080:80
 Requisitos: tener instalado un Ingress Controller (por ejemplo, NGINX Ingress Controller).
 
 ```bash
-# Aplica el Ingress (edita el host en k8s/ingress.yaml)
+# Aplica el Ingress (host por defecto: demo.local en k8s/ingress.yaml)
 kubectl apply -f k8s/ingress.yaml
 
 # Comprueba
@@ -155,8 +155,8 @@ kubectl get ingress -n demo
 - Si usas Minikube:
   - minikube addons enable ingress
   - Obtén la IP con `minikube ip` y añade en tu `/etc/hosts` (Windows: C:\Windows\System32\drivers\etc\hosts):
-    - <IP_MINIKUBE> demo.example.com
-  - Abre http://demo.example.com
+    - <IP_MINIKUBE> demo.local
+  - Abre http://demo.local
 
 - Si usas cloud (AKS/EKS/GKE): apunta tu DNS público al LB del controlador Ingress.
 
